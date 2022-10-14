@@ -1,11 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const readline = require("readline-sync");
-
 const circulationRepo = require('./repos/circulationRepo');
 const data = require('./circulation.json');
 const { AssertionError } = require('assert');
-
 const url = 'mongodb://localhost:27017';
 const dbName = 'circulation';
 /////////
@@ -118,11 +116,10 @@ async function main() {
     } catch (error) {
         console.log(error);
     } finally {
-        const admin = client.db(dbName).admin();
-        //so we dont overpopulate database
-        await client.db(dbName).dropDatabase();
-
+        //const admin = client.db(dbName).admin();
         //console.log(await admin.listDatabases());
+
+        await client.db(dbName).dropDatabase();
         client.close();
     }
     
